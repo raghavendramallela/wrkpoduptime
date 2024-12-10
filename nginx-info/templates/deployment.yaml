@@ -17,8 +17,10 @@ spec:
         app: nginx
         {{- include "nginx-info.selectorLabels" . | nindent 8 }}
     spec:
+      {{- if .Values.image.pullSecret }}
       imagePullSecrets:
         - name: "{{ .Values.image.pullSecret }}"
+      {{- end }}
       containers:
       - name: nginx
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

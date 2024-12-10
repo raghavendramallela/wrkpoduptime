@@ -6,6 +6,8 @@ image:
   tag: jammy
   pullPolicy: IfNotPresent
   pullsecret: "regcred"
+  # pullsecret: ""
+  # Leave empty if no pull secret is needed/public repository
 
 service:
   # type: NodePort
