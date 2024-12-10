@@ -28,3 +28,12 @@ spec:
           timeoutSeconds: 5
           successThreshold: 1
           failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 300  # 5 minutes initial delay
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3

@@ -17,6 +17,8 @@ spec:
         app: nginx
         {{- include "nginx-info.selectorLabels" . | nindent 8 }}
     spec:
+      imagePullSecrets:
+        - name: "{{ .Values.image.pullSecret }}"
       containers:
       - name: nginx
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -32,5 +34,14 @@ spec:
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
           failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.targetPort }}
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.livenessProbe.successThreshold }}
+          failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}

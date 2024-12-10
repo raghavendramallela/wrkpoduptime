@@ -5,6 +5,7 @@ image:
   repository: raghavendramallela/podnameuptime
   tag: jammy
   pullPolicy: IfNotPresent
+  pullsecret: "regcred"
 
 service:
   # type: NodePort
@@ -15,6 +16,13 @@ service:
 
 readinessProbe:
   initialDelaySeconds: 120
+  periodSeconds: 10
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 3
+
+livenessProbe:
+  initialDelaySeconds: 300
   periodSeconds: 10
   timeoutSeconds: 5
   successThreshold: 1
