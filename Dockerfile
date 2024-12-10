@@ -14,7 +14,7 @@ RUN mkdir -p /usr/local/openresty/nginx/client_body_temp && \
     chown -R www-data:www-data /usr/local/openresty/nginx && \
     chmod -R 755 /usr/local/openresty/nginx
 
-#USER www-data
+USER www-data
 
 EXPOSE 80
 
