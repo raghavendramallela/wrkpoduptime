@@ -1,0 +1,35 @@
+# Default values for nginx-info
+replicaCount: 3
+
+image:
+  repository: raghavendramallela/podnameuptime
+  tag: jammy
+  pullPolicy: IfNotPresent
+
+service:
+  # type: NodePort
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+  # nodePort: 30069
+
+readinessProbe:
+  initialDelaySeconds: 120
+  periodSeconds: 10
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 3
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
