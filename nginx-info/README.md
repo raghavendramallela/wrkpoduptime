@@ -23,9 +23,8 @@ The following table lists the configurable parameters of the chart and their def
 | `image.repository` | Image repository | `raghavendramallela/podnameuptime` |
 | `image.tag` | Image tag | `jammy` |
 | `image.pullPolicy` | Image pull policy | `IfNotPresent` |
-| `service.type` | Service type | `NodePort` |
+| `service.type` | Service type | `ClusterIP` |
 | `service.port` | Service port | `80` |
-| `service.nodePort` | Node port | `30069` |
 | `readinessProbe.initialDelaySeconds` | Initial delay for readiness probe | `120` |
 
 ## Customizing the Chart
