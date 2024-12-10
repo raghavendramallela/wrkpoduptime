@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-info-display
+  labels:
+    app: nginx-info
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-info
+  template:
+    metadata:
+      labels:
+        app: nginx-info
+    spec:
+      containers:
+      - name: nginx
+        image: raghavendramallela/podnameuptime:jammy
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 120  # 2 minutes initial delay
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
