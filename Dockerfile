@@ -12,6 +12,7 @@ RUN mkdir -p /usr/local/openresty/nginx/client_body_temp && \
     mkdir -p /usr/local/openresty/nginx/uwsgi_temp && \
     mkdir -p /usr/local/openresty/nginx/scgi_temp && \
     chown -R www-data:www-data /usr/local/openresty/nginx && \
+    chown www-data:www-data /start.sh && \
     chmod -R 755 /usr/local/openresty/nginx
 
 USER www-data
