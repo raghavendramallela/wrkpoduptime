@@ -14,11 +14,30 @@ spec:
       labels:
         app: nginx-info
     spec:
+      serviceAccountName: nginx-info-sa
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: nginx
         image: raghavendramallela/podnameuptime:jammy
         ports:
         - containerPort: 80
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsUser: 1000
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
         readinessProbe:
           httpGet:
             path: /
