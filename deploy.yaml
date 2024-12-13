@@ -14,11 +14,6 @@ spec:
       labels:
         app: nginx-info
     spec:
-      serviceAccountName: nginx-info-sa
-      securityContext:
-        runAsNonRoot: true
-        seccompProfile:
-          type: RuntimeDefault
       containers:
       - name: nginx
         image: raghavendramallela/podnameuptime:jammy
